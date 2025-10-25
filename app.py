@@ -29,5 +29,6 @@ def ask():
 
     return jsonify({'reply': response.text})
 
+
 if __name__ == '__main__':
     app.run(debug=True)
