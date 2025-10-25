@@ -3,7 +3,7 @@
 
 
 ## 🌐 Features
-Language Selection Interface: Choose your preferred language from a dropdown menu.
+* Language Selection Interface: Choose your preferred language from a dropdown menu.
 Multilingual Support: Communicate in English, Hindi, Kannada, Telugu, or Tamil.
 Voice Recognition: Speak to the assistant using your microphone.
 Text-to-Speech: AI responses are spoken aloud in the selected language.
@@ -30,34 +30,34 @@ AI-Powered Responses: Uses Gemini 2.0 Flash model via Google Generative AI API.
 ## Installation
 
 1. Clone the repository:
-git clone https://github.com/yourusername/multilingual-ai-assistant.git
-cd multilingual-ai-assistant
+- git clone https://github.com/yourusername/multilingual-ai-assistant.git
+- cd multilingual-ai-assistant
 
 2. Install dependencies:
-pip install flask google-genai
+- pip install flask google-genai
 
 3. Set your API key in the Flask app:
-client = genai.Client(api_key="YOUR_API_KEY")
+- client = genai.Client(api_key="YOUR_API_KEY")
 
 4. Run the server:
-python app.py
+- python app.py
 
 5. Open your browser and go to:
-http://localhost:5000
+- http://localhost:5000
 
 ## 📁 Project Structure
 
-multilingual-ai-assistant/
-│
-├── static/
-│   └── style.css          # Custom styles
-│
-├── templates/
-│   ├── home.html          # Language selection page
-│   └── va.html            # Chat interface
-│
-├── app.py                 # Flask backend
-└── README.md              # Project documentation
+- multilingual-ai-assistant/
+- │
+- ├── static/
+- │   └── style.css          # Custom styles
+- │
+- ├── templates/
+- │   ├── home.html          # Language selection page
+- │   └── va.html            # Chat interface
+- │
+- ├── app.py                 # Flask backend
+- └── README.md              # Project documentation
 
 
 ## 💬 Supported Languages
