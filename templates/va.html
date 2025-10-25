@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🧠 Multilingual AI Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+
+  <style>
+       body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #8e9eab);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-box">
+    <div class="chat-header">🧠 Multilingual AI Assistant ({{ lang }})</div>
+
+    <div id="chat"></div>
+
+    <div class="chat-input">
+      <input id="input" placeholder="Say or type something..." />
+      <button onclick="sendMessage()">➤</button>
+      <button onclick="startListening()">🎤</button>
+    </div>
+  </div>
+
+  <script>
+    const lang = "{{ lang }}";
+
+    function appendMessage(sender, text) {
+      const chat = document.getElementById("chat");
+      const msg = document.createElement("div");
+      msg.textContent = `${sender}: ${text}`;
+      chat.appendChild(msg);
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage("You", message);
+      input.value = "";
+
+      const res = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, lang })
+      });
+      const data = await res.json();
+      console.log(data)
+      appendMessage("AI", data.reply);
+
+      // Speak response
+      const utter = new SpeechSynthesisUtterance(data.reply);
+      utter.lang = lang === "Hindi" ? "hi-IN" :
+                   lang === "Telugu" ? "te-IN" :
+                   lang === "Kannada" ? "kn-IN":
+                   lang === "Tamil" ? "ta-IN" : "en-US";
+      speechSynthesis.speak(utter);
+    }
+
+    function startListening() {
+      // const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      document.getElementById("input").value = "Listening...";
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = lang === "Hindi" ? "hi-IN" :
+                         lang === "Telugu" ? "te-IN" :
+                         lang === "Kannada" ? "kn-IN":
+                         lang === "Tamil" ? "ta-IN" : "en-US";
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        console.log(transcript);
+        document.getElementById("input").value = transcript;
+        sendMessage();
+      };
+      recognition.start();
+    }
+  </script>
+</body>
+</html>
