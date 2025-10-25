@@ -30,11 +30,12 @@ AI-Powered Responses: Uses Gemini 2.0 Flash model via Google Generative AI API.
 ## Installation
 
 1. Clone the repository:
+- fork
 - git clone https://github.com/yourusername/multilingual-ai-assistant.git
 - cd multilingual-ai-assistant
 
 2. Install dependencies:
-- pip install flask google-genai
+- pip install -r requirements.txt
 
 3. Set your API key in the Flask app:
 - client = genai.Client(api_key="YOUR_API_KEY")
