@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import google.genai as genai
 
 app = Flask(__name__)
-client = genai.Client(api_key="AIzaSyAZFZzwS0IvGySeCzdz5HDxU_7twKah3P8")
+client = genai.Client(api_key="YOUR_API_KEY")
 
 @app.route('/')
 def index():
